@@ -3,97 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Available Links</title>
+    <title>KSign Repo - Anti-Khoindvn Edition</title>
     <style>
-        /* This section makes it look like your screenshot */
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-main: #c9d1d9;
+            --text-bright: #ffffff;
+            --link-blue: #58a6ff;
+            --accent-red: #f85149;
+        }
+
         body {
-            background-color: #0d1117; /* Dark background */
-            color: #c9d1d9;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, sans-serif;
+            margin: 0;
+            padding: 20px;
             display: flex;
             justify-content: center;
+        }
+
+        .container { width: 100%; max-width: 1000px; }
+
+        /* The Drama Header */
+        .header-box {
+            border: 1px solid var(--accent-red);
+            background-color: rgba(248, 81, 73, 0.1);
+            border-radius: 12px;
             padding: 20px;
-            margin: 0;
+            margin-bottom: 30px;
+            text-align: center;
         }
 
-        .container {
-            width: 100%;
-            max-width: 450px;
+        .header-box h2 { color: var(--text-bright); margin: 0 0 10px 0; }
+        .header-box p { font-style: italic; color: #8b949e; margin-bottom: 20px; }
+
+        .btn-dns {
+            display: inline-block;
+            background: var(--link-blue);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
         }
 
-        h2 {
-            color: #ffffff;
-            font-size: 1.5rem;
-            margin-bottom: 8px;
+        /* Grid Layout for Columns */
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
         }
 
-        .subtitle {
-            color: #8b949e;
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-        }
-
-        /* The "Card" style for each app */
         .card {
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 15px;
-            transition: transform 0.2s;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 15px;
+            display: flex;
+            align-items: center; /* Side-by-side style like your screenshots */
+            gap: 15px;
+            transition: 0.2s;
         }
 
-        .card:hover {
-            border-color: #8b949e;
+        .card:hover { border-color: #8b949e; background: #1c2128; }
+
+        .card img {
+            width: 55px;
+            height: 55px;
+            border-radius: 12px;
         }
+
+        .card-info { flex-grow: 1; overflow: hidden; }
 
         .card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1rem;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-bright);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .card a {
-            color: #58a6ff; /* The blue link color */
+        .card p {
+            margin: 2px 0 0 0;
+            font-size: 0.7rem;
+            color: #8b949e;
+        }
+
+        .install-btn {
+            background-color: #21262d;
+            color: var(--link-blue);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
+            font-weight: bold;
+            font-size: 0.75rem;
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
         }
 
-        .card a:hover {
-            text-decoration: underline;
-        }
+        .install-btn:hover { background: var(--link-blue); color: white; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h2>Available itms-services Links</h2>
-        <p class="subtitle">Copy one link at a time and paste it into Safari. If you get an integrity error, try another.</p>
-
-        <div class="card">
-            <h3>VIETNAM AIRLINES JSC</h3>
-            <a href="itms-services://?action=download-manifest&url=PASTE_YOUR_PLIST_URL_HERE">Install</a>
-        </div>
-
-        <div class="card">
-            <h3>PowerChina International Group Limited</h3>
-            <a href="itms-services://?action=download-manifest&url=PASTE_YOUR_PLIST_URL_HERE">Install</a>
-        </div>
-
-        <div class="card">
-            <h3>PowerChina International Group Limited 1</h3>
-            <a href="itms-services://?action=download-manifest&url=PASTE_YOUR_PLIST_URL_HERE">Install</a>
-        </div>
-
-        <div class="card">
-            <h3>Qingdao Rural Commercial Bank Co., Ltd</h3>
-            <a href="itms-services://?action=download-manifest&url=PASTE_YOUR_PLIST_URL_HERE">Install</a>
-        </div>
-
+<div class="container">
+    <div class="header-box">
+        <h2>System Update</h2>
+        <p>"This is for the DNS Profile, and the Ksigns since Khoindvn acting funny."</p>
+        <a href="YOUR_DNS_URL" class="btn-dns">DOWNLOAD DNS PROFILE</a>
     </div>
+
+    <h2 style="color: white; margin-bottom: 20px;">All KSign Versions</h2>
+    
+    <div class="app-grid" id="app-list"></div>
+</div>
+
+<script>
+    // Full list based on your screenshots
+    const apps = [
+        { name: "KSign ✅", dev: "National Oilwell Varco, Inc." },
+        { name: "KSign", dev: "VIETNAM AIRLINES JSC" },
+        { name: "KSign", dev: "PowerChina International" },
+        { name: "KSign PowerChina", dev: "PowerChina International" },
+        { name: "KSign PowerChina 1", dev: "PowerChina International" },
+        { name: "KSign PowerChina 2", dev: "PowerChina International" },
+        { name: "KSign PowerChina 3", dev: "PowerChina International" },
+        { name: "KSign", dev: "Qingdao Rural Commercial Bank" },
+        { name: "KSign", dev: "Commission on Elections" },
+        { name: "KSign Com V1", dev: "Commission on Elections" },
+        { name: "KSign Com V2", dev: "Commission on Elections" },
+        { name: "KSign", dev: "Wasu Media & Network Co" },
+        { name: "KSign", dev: "Luoyang Postal Administration" },
+        { name: "KSign", dev: "Etisalat - Emirates Telecom" },
+        { name: "KSign", dev: "China National Heavy Duty" },
+        { name: "KSign", dev: "China Telecommunications" },
+        { name: "KSign", dev: "Tianjin University" },
+        { name: "KSign", dev: "VIETTEL GROUP" },
+        { name: "KSign", dev: "CHIBA INSTITUTE OF TECH" },
+        { name: "KSign ChiBa V1", dev: "CHIBA INSTITUTE" },
+        { name: "KSign ChiBa V2", dev: "CHIBA INSTITUTE" },
+        { name: "KSign ChiBa V3", dev: "CHIBA INSTITUTE" },
+        { name: "KSign ChiBa V4", dev: "CHIBA INSTITUTE" },
+        { name: "KSign", dev: "VIETNAM JOINT STOCK BANK" },
+        { name: "KSign VN V1", dev: "VIETNAM JOINT STOCK" },
+        { name: "KSign VN V2", dev: "VIETNAM JOINT STOCK" },
+        { name: "KSign VN V3", dev: "VIETNAM JOINT STOCK" },
+        { name: "KSign VN V4", dev: "VIETNAM JOINT STOCK" },
+        { name: "KSign", dev: "GLOBAL TAKEOFF, INC" },
+        { name: "KSign GLOBAL V1", dev: "GLOBAL TAKEOFF, INC" },
+        { name: "KSign GLOBAL V2", dev: "GLOBAL TAKEOFF, INC" },
+        { name: "KSign GLOBAL V3", dev: "GLOBAL TAKEOFF, INC" },
+        { name: "KSign GLOBAL V4", dev: "GLOBAL TAKEOFF, INC" },
+        { name: "KSign GLOBAL V5", dev: "GLOBAL TAKEOFF, INC" },
+        { name: "KSign GLOBAL V6", dev: "GLOBAL TAKEOFF, INC" },
+        { name: "KSign GLOBAL V7", dev: "GLOBAL TAKEOFF, INC" }
+    ];
+
+    const listContainer = document.getElementById('app-list');
+    const iconUrl = "https://is1-ssl.mzstatic.com/image/thumb/Purple122/v4/80/7a/9d/807a9d0a-605d-6f7d-0839-4d6d6e1b65e9/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/100x100bb.jpg";
+
+    apps.forEach(app => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <img src="${iconUrl}" alt="KSign">
+            <div class="card-info">
+                <h3>${app.name}</h3>
+                <p>${app.dev}</p>
+            </div>
+            <a href="itms-services://?action=download-manifest&url=YOUR_URL" class="install-btn">INSTALL</a>
+        `;
+        listContainer.appendChild(card);
+    });
+</script>
 
 </body>
 </html>
