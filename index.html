@@ -1,10 +1,70 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>My Site</title>
-</head>
-<body>
-  <h1>Yo this is my GitHub site</h1>
-  <p>Made by Alan</p>
-</body>
-</html>
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
+public class GithubPageGenerator {
+
+    // Simple record to hold app data
+    static class AppItem {
+        String name;
+        String link;
+
+        AppItem(String name, String link) {
+            this.name = name;
+            this.link = link;
+        }
+    }
+
+    public static void main(String[] args) {
+        List<AppItem> apps = new ArrayList<>();
+        
+        // Add your apps here - replace links with your actual .plist URLs
+        apps.add(new AppItem("VIETNAM AIRLINES JSC", "itms-services://?action=download-manifest&url=link1.plist"));
+        apps.add(new AppItem("PowerChina International Group Limited", "#"));
+        apps.add(new AppItem("PowerChina International Group Limited 1", "#"));
+        apps.add(new AppItem("PowerChina International Group Limited 2", "#"));
+
+        try (PrintWriter writer = new PrintWriter(new FileWriter("index.html"))) {
+            // Start HTML & CSS
+            writer.println("<!DOCTYPE html>");
+            writer.println("<html lang='en'>");
+            writer.println("<head>");
+            writer.println("    <meta charset='UTF-8'>");
+            writer.println("    <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
+            writer.println("    <style>");
+            writer.println("        body { background-color: #0d1117; color: #c9d1d9; font-family: -apple-system, sans-serif; padding: 20px; }");
+            writer.println("        .container { max-width: 400px; margin: 0 auto; }");
+            writer.println("        h2 { color: white; font-size: 1.4rem; margin-bottom: 5px; }");
+            writer.println("        p { color: #8b949e; font-size: 0.9rem; margin-bottom: 25px; }");
+            writer.println("        .card { background-color: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 18px; margin-bottom: 12px; }");
+            writer.println("        .card h3 { margin: 0 0 8px 0; font-size: 1rem; color: white; text-transform: uppercase; }");
+            writer.println("        .card a { color: #58a6ff; text-decoration: none; font-weight: 600; font-size: 0.9rem; }");
+            writer.println("        .card a:hover { text-decoration: underline; }");
+            writer.println("    </style>");
+            writer.println("</head>");
+            writer.println("<body>");
+            writer.println("    <div class='container'>");
+            writer.println("        <h2>Available itms-services Links</h2>");
+            writer.println("        <p>Copy one link at a time and paste it into Safari.</p>");
+
+            // Generate a card for every app in the list
+            for (AppItem app : apps) {
+                writer.println("        <div class='card'>");
+                writer.println("            <h3>" + app.name + "</h3>");
+                writer.println("            <a href='" + app.link + "'>Install</a>");
+                writer.println("        </div>");
+            }
+
+            writer.println("    </div>");
+            writer.println("</body>");
+            writer.println("</html>");
+
+            System.out.println("Success! Your 'index.html' has been generated.");
+
+        } catch (IOException e) {
+            System.err.println("An error occurred: " + e.getMessage());
+        }
+    }
+}
