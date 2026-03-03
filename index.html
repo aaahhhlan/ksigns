@@ -1,70 +1,99 @@
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-
-public class GithubPageGenerator {
-
-    // Simple record to hold app data
-    static class AppItem {
-        String name;
-        String link;
-
-        AppItem(String name, String link) {
-            this.name = name;
-            this.link = link;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Links</title>
+    <style>
+        /* This section makes it look like your screenshot */
+        body {
+            background-color: #0d1117; /* Dark background */
+            color: #c9d1d9;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
         }
-    }
 
-    public static void main(String[] args) {
-        List<AppItem> apps = new ArrayList<>();
-        
-        // Add your apps here - replace links with your actual .plist URLs
-        apps.add(new AppItem("VIETNAM AIRLINES JSC", "itms-services://?action=download-manifest&url=link1.plist"));
-        apps.add(new AppItem("PowerChina International Group Limited", "#"));
-        apps.add(new AppItem("PowerChina International Group Limited 1", "#"));
-        apps.add(new AppItem("PowerChina International Group Limited 2", "#"));
-
-        try (PrintWriter writer = new PrintWriter(new FileWriter("index.html"))) {
-            // Start HTML & CSS
-            writer.println("<!DOCTYPE html>");
-            writer.println("<html lang='en'>");
-            writer.println("<head>");
-            writer.println("    <meta charset='UTF-8'>");
-            writer.println("    <meta name='viewport' content='width=device-width, initial-scale=1.0'>");
-            writer.println("    <style>");
-            writer.println("        body { background-color: #0d1117; color: #c9d1d9; font-family: -apple-system, sans-serif; padding: 20px; }");
-            writer.println("        .container { max-width: 400px; margin: 0 auto; }");
-            writer.println("        h2 { color: white; font-size: 1.4rem; margin-bottom: 5px; }");
-            writer.println("        p { color: #8b949e; font-size: 0.9rem; margin-bottom: 25px; }");
-            writer.println("        .card { background-color: #161b22; border: 1px solid #30363d; border-radius: 10px; padding: 18px; margin-bottom: 12px; }");
-            writer.println("        .card h3 { margin: 0 0 8px 0; font-size: 1rem; color: white; text-transform: uppercase; }");
-            writer.println("        .card a { color: #58a6ff; text-decoration: none; font-weight: 600; font-size: 0.9rem; }");
-            writer.println("        .card a:hover { text-decoration: underline; }");
-            writer.println("    </style>");
-            writer.println("</head>");
-            writer.println("<body>");
-            writer.println("    <div class='container'>");
-            writer.println("        <h2>Available itms-services Links</h2>");
-            writer.println("        <p>Copy one link at a time and paste it into Safari.</p>");
-
-            // Generate a card for every app in the list
-            for (AppItem app : apps) {
-                writer.println("        <div class='card'>");
-                writer.println("            <h3>" + app.name + "</h3>");
-                writer.println("            <a href='" + app.link + "'>Install</a>");
-                writer.println("        </div>");
-            }
-
-            writer.println("    </div>");
-            writer.println("</body>");
-            writer.println("</html>");
-
-            System.out.println("Success! Your 'index.html' has been generated.");
-
-        } catch (IOException e) {
-            System.err.println("An error occurred: " + e.getMessage());
+        .container {
+            width: 100%;
+            max-width: 450px;
         }
-    }
-}
+
+        h2 {
+            color: #ffffff;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #8b949e;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        /* The "Card" style for each app */
+        .card {
+            background-color: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            border-color: #8b949e;
+        }
+
+        .card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1rem;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card a {
+            color: #58a6ff; /* The blue link color */
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Available itms-services Links</h2>
+        <p class="subtitle">Copy one link at a time and paste it into Safari. If you get an integrity error, try another.</p>
+
+        <div class="card">
+            <h3>VIETNAM AIRLINES JSC</h3>
+            <a href="itms-services://?action=download-manifest&url=PASTE_YOUR_PLIST_URL_HERE">Install</a>
+        </div>
+
+        <div class="card">
+            <h3>PowerChina International Group Limited</h3>
+            <a href="itms-services://?action=download-manifest&url=PASTE_YOUR_PLIST_URL_HERE">Install</a>
+        </div>
+
+        <div class="card">
+            <h3>PowerChina International Group Limited 1</h3>
+            <a href="itms-services://?action=download-manifest&url=PASTE_YOUR_PLIST_URL_HERE">Install</a>
+        </div>
+
+        <div class="card">
+            <h3>Qingdao Rural Commercial Bank Co., Ltd</h3>
+            <a href="itms-services://?action=download-manifest&url=PASTE_YOUR_PLIST_URL_HERE">Install</a>
+        </div>
+
+    </div>
+
+</body>
+</html>
